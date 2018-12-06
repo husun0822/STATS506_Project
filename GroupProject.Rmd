@@ -18,6 +18,8 @@ diet.R = read.csv("./diet.csv", header = TRUE)
 diet.R = na.omit(diet.R)
 ```
 
+The `na.omit()` omitted two data points, Person 25 and 26. These points were missing the value for their gender. 
+
 Then we need to tell R that Diet and gender are factors by using `as.factor()` and `factor()`.
 
 ```{r}
@@ -30,6 +32,12 @@ Then we need to create the variable of interest 'weightlost'.
 ```{r}
 diet.R$weightlost = diet.R$pre.weight - diet.R$weight6weeks
 ```
+
+```{r}
+summary(diet.R)
+```
+
+Here is a quick summary of our dataset so you can see what variables are in the dataset and have a brief summary of those variables. 
 
 We then split the dataset into subsets by 'gender' using `subset()` so we can have separate datasets for the female and male data.
 
@@ -89,6 +97,8 @@ And here is the plot for the male data.
 plotmeans(weightlost~Diet, data = Diet.male)
 ```
 
+For both of these plots `n` is the number of people that participated in each Diet.
+
 A similar way we could analysis this data is to do parametric two-way ANOVA for the whole dataset. For this we still use `aov()` but now we regard 'gender' and 'Diet as two grouping variables. 
 
 ```{r}
@@ -116,4 +126,4 @@ kruskal.test(weightlost~Diet, data = Diet.male)
 
 We get a p-value that is larger than 0.05 so there is no statistically significant difference in weight loss between the three groups in the male dataset. This is the same result we got from the parametric one-way ANOVA for the male data.
 
-
+Finally, after all of this analysis we can conclude that for this dataset that you can either analyze the data using either parametric or nonparametric ANOVA and receive the same results. Our conclusion is that one group, the Diet 3 group, had a significant difference in weight loss compared to the other groups in the female dataset. However, for the male dataset there was no significant difference in weight loss between the different Diet groups. 
