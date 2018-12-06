@@ -99,14 +99,15 @@ plotmeans(weightlost~Diet, data = Diet.male)
 
 For both of these plots `n` is the number of people that participated in each Diet.
 
-A similar way we could analysis this data is to do parametric two-way ANOVA for the whole dataset. For this we still use `aov()` but now we regard 'gender' and 'Diet as two grouping variables. 
+A similar way we could analysis this data is to do parametric two-way ANOVA for the whole dataset. For this we still use `aov()` but now we regard 'gender' and 'Diet as two grouping variables. And to analysis the model we will use `Anova()` and we want it to be a Type III Sums of Squares ANOVA.
 
 ```{r}
+library(car)
 anova2 = aov(weightlost~gender*Diet,data=diet.R)
-summary(anova2)
+Anova(anova2,type = "III")
 ```
 
-The gender:Diet interaction is statistically significant at the p = 0.04884 level. There was no statistically significant difference in weight loss between gender (p = 0.82062), but there were statistically significant differences between Diet groups (p = 0.00546).
+The gender:Diet interaction is statistically significant at the p = 0.04884 level. There was no statistically significant difference in weight loss between gender (p = 0.77854), but there were statistically significant differences between Diet groups (p = 0.01304).
 
 ## Nonparametric ANOVA: Kruskal-Wallis Test
 

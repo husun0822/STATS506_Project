@@ -55,5 +55,4 @@ kruskal.test(weightlost~Diet, data = Diet.male)
 
 #Create Two-way ANOVA model and analyze
 anova2 = aov(weightlost~gender*Diet,data=diet.R)
-summary(anova2)
-
+Anova(anova2,type = "III")
