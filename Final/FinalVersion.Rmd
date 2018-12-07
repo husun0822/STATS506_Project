@@ -48,12 +48,11 @@ In the R, STATA, and MATLAB tutorials below, we first do a one-way ANOVA for wei
 The most important commands are aov() in R, anova in SAS, and multcompare in MATLAB.  
 
 
-
 #{.tabset .tabset-fade}
 
 ## R
 
-### Parametric and Non-parametric ANOVA analysis in R
+### Data Processing
 
 First we want to load the dataset into R and omit any missing values using `read.csv()` and `na.omit()`.
 
@@ -93,6 +92,8 @@ Diet.male = subset(diet.R, gender==1)
 Now that we have all the setup work done we can move on to our ANOVA analysis.
 
 ### Parametric ANOVA
+
+#### Parametric Onw-Way ANOVA
 
 To create our ANOVA model we use 'Diet' as the grouping variable and use `aov()` to create our parametric one-way ANOVA model for the female dataset. We can then use `summary()` to analyze this model.
 
@@ -143,6 +144,8 @@ plotmeans(weightlost~Diet, data = Diet.male)
 
 For both of these plots `n` is the number of people that participated in each Diet.
 
+#### Parametric Two-Way ANOVA
+
 A similar way we could analysis this data is to do parametric two-way ANOVA for the whole dataset. For this we still use `aov()` but now we regard 'gender' and 'Diet as two grouping variables. And to analysis the model we will use `Anova()` and we want it to be a Type III Sums of Squares ANOVA.
 
 ```{r}
@@ -170,6 +173,8 @@ kruskal.test(weightlost~Diet, data = Diet.male)
 ```
 
 We get a p-value that is larger than 0.05 so there is no statistically significant difference in weight loss between the three groups in the male dataset. This is the same result we got from the parametric one-way ANOVA for the male data.
+
+### Conclusion
 
 Finally, after all of this analysis we can conclude that for this dataset that you can either analyze the data using either parametric or nonparametric ANOVA and receive the same results. Our conclusion is that one group, the Diet 3 group, had a significant difference in weight loss compared to the other groups in the female dataset. However, for the male dataset there was no significant difference in weight loss between the different Diet groups. 
 
@@ -412,6 +417,7 @@ We did exactly the same on the male subsample and get:
 ![](onewayanovamale_MATLAB.png)
 
 ![](onewaypairwisemale_MATLAB.png)
+
 
 #### Parametric Two-Way ANOVA
 
